@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/ui/theme-provider'
+import QueryClientProviderWrapper from '@/providers/QueryClientProviderWrapper'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -85,7 +86,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <QueryClientProviderWrapper>
+            {children}
+          </QueryClientProviderWrapper>
         </ThemeProvider>
       </body>
     </html>
