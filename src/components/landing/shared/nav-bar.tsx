@@ -99,7 +99,6 @@ function NavBar() {
                                     <span className={`${isActive ? "text-blue-500 dark:text-blue-700" : ""}`}>
                                         {link.icon}
                                     </span>
-                                    <span className={`${isActive ? "font-bold" : ""}`}>{link.title}</span>
                                 </article>
                             </Link>
                         </motion.div>
