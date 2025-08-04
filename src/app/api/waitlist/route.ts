@@ -1,3 +1,4 @@
+import { prisma } from "@/helpers/prisma";
 import {NextResponse} from "next/server";
 import type {NextRequest} from "next/server";
 import nodemailer from "nodemailer";
@@ -35,6 +36,13 @@ export async function POST(req: NextRequest) {
           <p>– The MyPlug Team 🚀</p>
         </div>
       `,
+    });
+
+    // Create a waitlist user in the db
+    await prisma.waitlistUser.create({
+      data: {
+        email,
+      },
     });
 
     return NextResponse.json(
