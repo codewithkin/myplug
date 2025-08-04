@@ -23,7 +23,7 @@ const socialLinks: { href: string; icon: ReactNode; label: string }[] = [
 ];
 
 const navLinks = [
-  { title: "Home", href: "/home" },
+  { title: "Home", href: "/" },
   { title: "Features", href: "#features" },
   { title: "Join waitlist", href: "#cta" },
 ];

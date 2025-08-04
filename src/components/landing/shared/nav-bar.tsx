@@ -47,7 +47,7 @@ function NavBar() {
     const links: Navlink[] = [
         {
             title: "Home",
-            href: "/home",
+            href: "/",
             icon: <Home />,
         },
         {
