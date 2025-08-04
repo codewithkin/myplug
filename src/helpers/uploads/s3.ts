@@ -1,12 +1,11 @@
-// Bun s3 client
 import { S3Client } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
-    accessKeyId: Bun.env.SEVALLA_ACCESS_KEY_ID,
-    secretAccessKey: Bun.env.SEVALLA_SECRET_ACCESS_KEY,
-    bucket: Bun.env.SEVALLA_BUCKET,
-    endpoint: Bun.env.SEVALLA_ENDPOINT,
-    region: Bun.env.SEVALLA_REGION
+    credentials: {
+        accessKeyId: process.env.SEVALLA_ACCESS_KEY_ID || "",
+        secretAccessKey: process.env.SEVALLA_SECRET_ACCESS_KEY || "",
+    },
+    region: process.env.SEVALLA_REGION
 });
 
 export default s3Client;
