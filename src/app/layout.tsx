@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s | MyPlug',
   },
   description:
-    'MyPlug helps you embed an AI-powered chat assistant into your website or store with a few lines of code.',
+    'MyPlug helps you embed an AI-powered chat assistant into your website with a few lines of code.',
   keywords: [
     'AI Chatbot',
     'Plug and Play',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://myplug.shop',
     siteName: 'MyPlug',
-    title: 'MyPlug — Add AI Chat to Your Store',
+    title: 'MyPlug — Add AI Chat to Your website',
     description:
       'Plug in your AI assistant to boost engagement and conversions. Just copy, paste, and launch.',
     images: [
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MyPlug — Add AI Chat to Your Store',
+    title: 'MyPlug — Add AI Chat to Your website',
     description:
-      'No-code AI chatbot that boosts customer engagement on your storefront.',
+      'No-code AI chatbot that boosts customer engagement on your website.',
     images: ['https://myplug.shop/og-image.png'],
     creator: '@myplugai',
   },
