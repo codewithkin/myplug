@@ -3,6 +3,7 @@ import Header from "@/components/landing/Header"
 import Steps from "@/components/landing/Steps"
 import WhoItsForSection from "@/components/landing/WhoItsFor"
 import CtaSection from "@/components/landing/CTA"
+import Footer from "@/components/landing/shared/footer"
 
 function Home() {
     return (
@@ -12,6 +13,7 @@ function Home() {
             <FeaturesSection />
             <WhoItsForSection />
             <CtaSection />
+            <Footer />
         </article>
     )
 }
