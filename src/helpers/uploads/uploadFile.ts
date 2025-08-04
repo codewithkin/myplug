@@ -3,7 +3,7 @@ import s3Client from "./s3";
 
 export default async function uploadFile(file: File) {
     const dataFileUrl = await s3Client.send(new PutObjectCommand({
-        Bucket: Bun.env.SEVALLA_BUCKET,
+        Bucket: process.env.SEVALLA_BUCKET,
         Key: `chatbots/${file.name}`,
         Body: file
     }));
