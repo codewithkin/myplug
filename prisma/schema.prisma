@@ -26,6 +26,8 @@ model User {
   createdAt     DateTime
   updatedAt     DateTime
 
+  plan String @default("free")
+
   sessions      Session[]
   accounts      Account[]
   chatBots      ChatBot[]
