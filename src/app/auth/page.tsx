@@ -117,7 +117,7 @@ export default function AuthPage() {
 
                         {signingInWithGoogle ? "Signing in with Google..." : "Sign in with Google"}
                     </Button>
-                    <Button disabled={signingInWithGitHub} size="lg" variant="outline" className="w-full md:w-fit bg-slate-500 text-white hover:bg-slate-500/80 hover:text-white" onClick={() => signInWithGitHub()}>
+                    <Button disabled={signingInWithGitHub} size="lg" variant="outline" className="w-full md:w-fit bg-slate-500 text-white hover:bg-slate-500/80 dark:bg-slate-500 dark:hover:bg-slate-500/80 hover:text-white" onClick={() => signInWithGitHub()}>
                         {
                             signingInWithGitHub ? (
                                 <LoaderCircle className="w-4 h-4 animate-spin" />
