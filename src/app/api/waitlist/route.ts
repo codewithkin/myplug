@@ -38,6 +38,17 @@ export async function POST(req: NextRequest) {
       `,
     });
 
+    // Check if the email is already in the waitlist
+    const waitlistUser = await prisma.waitlistUser.findUnique({
+      where: {
+        email,
+      },
+    });
+    
+    if (waitlistUser) {
+      return NextResponse.json({message: "Email already in waitlist"}, {status: 400});
+    }
+    
     // Create a waitlist user in the db
     await prisma.waitlistUser.create({
       data: {
