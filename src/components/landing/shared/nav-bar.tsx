@@ -72,7 +72,7 @@ function NavBar() {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="shadow-md dark:bg-white bg-slate-900 rounded-full w-full md:w-fit flex justify-between gap-4 md:gap-12 items-center py-4 px-8 fixed md:relative bottom-4"
+            className="shadow-md dark:bg-white bg-slate-900 rounded-full w-full md:w-fit flex justify-between gap-4 md:gap-12 items-center py-4 px-8 fixed md:relative bottom-4 z-50"
         >
             <motion.h1
                 variants={itemVariants}
