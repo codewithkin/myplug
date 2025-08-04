@@ -35,81 +35,184 @@ function Header() {
     })
 
     return (
-        <motion.header
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col items-center py-12 bg-gray-100 dark:bg-slate-900 min-h-screen"
-        >
-            <NavBar />
-
-            <motion.article
-                initial={{ opacity: 0, y: 30 }}
+        <>
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="flex flex-col gap-8 mt-8 justify-center items-center text-center"
-            >
-                <Badge className="px-4 py-2 dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-600 rounded-full bg-white text-slate-600 dark:text-white font-normal shadow-md">
-                    <CircleFadingPlus />
-                    AI chatbots for your site
-                </Badge>
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="min-h-screen w-full bg-[#020617] relative dark:flex flex-col items-center py-12 hidden">
+                {/* Magenta Orb Grid Background */}
+                <div
+                    className="absolute inset-0 z-0 "
+                    style={{
+                        background: "#020617",
+                        backgroundImage: `
+        linear-gradient(to right, rgba(71,85,105,0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(71,85,105,0.15) 1px, transparent 1px),
+        radial-gradient(circle at 50% 60%, rgba(236,72,153,0.15) 0%, rgba(168,85,247,0.05) 40%, transparent 70%)
+      `,
+                        backgroundSize: "40px 40px, 40px 40px, 100% 100%",
+                    }}
+                />
 
-                <article className="flex flex-col gap-8 md:max-w-2xl">
-                    <h2 className="text-6xl font-semibold">Add an AI chatbot to your site</h2>
-                    <p className="text-sm text-gray-400 dark:text-slate-600">
-                        Easily integrate intelligent assistants into your web platform to boost customer engagement, improve service, and enhance automation.
-                    </p>
+                <NavBar />
 
-                    {joined ? (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4 }}
-                            className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-6 py-4 rounded-full font-medium flex items-center justify-center gap-2"
-                        >
-                            <Sparkles className="w-5 h-5" />
-                            You're on the list! We'll be in touch soon.
-                        </motion.div>
-                    ) : (
-                        <motion.article
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4 }}
-                            className="flex items-center gap-2 self-center md:max-w-lg rounded-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 py-2 px-4"
-                        >
-                            <Input
-                                className="shadow-none border-0 outline-0 focus-visible:border-0 focus-visible:outline-0 focus-visible:ring-0 bg-transparent"
-                                placeholder="Your email"
-                            />
-                            <Button
-                                className="rounded-full py-6 px-4"
-                                disabled={joiningWaitlist}
-                                onClick={() => joinWaitlist()}
-                            >
-                                {joiningWaitlist ? (
-                                    <Loader2 className="w-4 h-4 animate-spin" />
-                                ) : (
-                                    <>
-                                        <PenTool className="mr-2 h-4 w-4" />
-                                        Join waitlist
-                                    </>
-                                )}
-                            </Button>
-                        </motion.article>
-                    )}
+                <motion.article
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="flex flex-col gap-8 mt-8 justify-center items-center text-center z-10"
+                >
+                    <Badge className="px-4 py-2 dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-600 rounded-full bg-white text-slate-600 dark:text-white font-normal shadow-md">
+                        <CircleFadingPlus />
+                        AI chatbots for your site
+                    </Badge>
 
-                    {error && (
-                        <p className="text-sm text-red-500 font-medium">
-                            {error}
+                    <article className="flex flex-col gap-8 md:max-w-2xl">
+                        <h2 className="text-6xl font-semibold">Add an AI chatbot to your site</h2>
+                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                            Easily integrate intelligent assistants into your web platform to boost customer engagement, improve service, and enhance automation.
                         </p>
-                    )}
 
-                    <p className="text-sm text-gray-400 dark:text-slate-600">
-                        Upgrade your website to match the 21st century
-                    </p>
-                </article>
-            </motion.article>
-        </motion.header>
+                        {joined ? (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.4 }}
+                                className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-6 py-4 rounded-full font-medium flex items-center justify-center gap-2"
+                            >
+                                <Sparkles className="w-5 h-5" />
+                                You're on the list! We'll be in touch soon.
+                            </motion.div>
+                        ) : (
+                            <motion.article
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.4 }}
+                                className="flex items-center gap-2 self-center md:max-w-lg rounded-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 py-2 px-4"
+                            >
+                                <Input
+                                    className="shadow-none border-0 outline-0 focus-visible:border-0 focus-visible:outline-0 focus-visible:ring-0 bg-transparent"
+                                    placeholder="Your email"
+                                />
+                                <Button
+                                    className="rounded-full py-6 px-4"
+                                    disabled={joiningWaitlist}
+                                    onClick={() => joinWaitlist()}
+                                >
+                                    {joiningWaitlist ? (
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                    ) : (
+                                        <>
+                                            <PenTool className="mr-2 h-4 w-4" />
+                                            Join waitlist
+                                        </>
+                                    )}
+                                </Button>
+                            </motion.article>
+                        )}
+
+                        {error && (
+                            <p className="text-sm text-red-500 font-medium">
+                                {error}
+                            </p>
+                        )}
+
+                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                            Upgrade your website to match the 21st century
+                        </p>
+                    </article>
+                </motion.article>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="min-h-screen w-full bg-[#020617] relative flex flex-col items-center py-12 dark:hidden">
+                {/* White Sphere Grid Background */}
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                        background: "white",
+                        backgroundImage: `
+       linear-gradient(to right, rgba(71,85,105,0.3) 1px, transparent 1px),
+       linear-gradient(to bottom, rgba(71,85,105,0.3) 1px, transparent 1px),
+       radial-gradient(circle at 50% 50%, rgba(139,92,246,0.25) 0%, rgba(139,92,246,0.1) 40%, transparent 80%)
+     `,
+                        backgroundSize: "32px 32px, 32px 32px, 100% 100%",
+                    }}
+                />
+                <NavBar />
+
+                <motion.article
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="flex flex-col gap-8 mt-8 justify-center items-center text-center z-10"
+                >
+                    <Badge className="px-4 py-2 dark:bg-gradient-to-r dark:from-slate-800 dark:to-slate-600 rounded-full bg-white text-slate-600 dark:text-white font-normal shadow-md">
+                        <CircleFadingPlus />
+                        AI chatbots for your site
+                    </Badge>
+
+                    <article className="flex flex-col gap-8 md:max-w-2xl">
+                        <h2 className="text-6xl font-semibold">Add an AI chatbot to your site</h2>
+                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                            Easily integrate intelligent assistants into your web platform to boost customer engagement, improve service, and enhance automation.
+                        </p>
+
+                        {joined ? (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.4 }}
+                                className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-6 py-4 rounded-full font-medium flex items-center justify-center gap-2"
+                            >
+                                <Sparkles className="w-5 h-5" />
+                                You're on the list! We'll be in touch soon.
+                            </motion.div>
+                        ) : (
+                            <motion.article
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.4 }}
+                                className="flex items-center gap-2 self-center md:max-w-lg rounded-full bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 py-2 px-4"
+                            >
+                                <Input
+                                    className="shadow-none border-0 outline-0 focus-visible:border-0 focus-visible:outline-0 focus-visible:ring-0 bg-transparent"
+                                    placeholder="Your email"
+                                />
+                                <Button
+                                    className="rounded-full py-6 px-4"
+                                    disabled={joiningWaitlist}
+                                    onClick={() => joinWaitlist()}
+                                >
+                                    {joiningWaitlist ? (
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                    ) : (
+                                        <>
+                                            <PenTool className="mr-2 h-4 w-4" />
+                                            Join waitlist
+                                        </>
+                                    )}
+                                </Button>
+                            </motion.article>
+                        )}
+
+                        {error && (
+                            <p className="text-sm text-red-500 font-medium">
+                                {error}
+                            </p>
+                        )}
+
+                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                            Upgrade your website to match the 21st century
+                        </p>
+                    </article>
+                </motion.article>
+            </motion.div>
+        </>
     )
 }
 
