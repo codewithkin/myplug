@@ -50,13 +50,13 @@ function Header() {
 
                     <article className="flex flex-col gap-8 md:max-w-2xl">
                         <h2 className="text-6xl font-semibold">Add an AI chatbot to your site</h2>
-                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                        <p className="text-sm text-gray-600 dark:text-slate-600">
                             Easily integrate intelligent assistants into your web platform to boost customer engagement, improve service, and enhance automation.
                         </p>
 
                         <EmailInput />
 
-                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                        <p className="text-sm text-gray-600 dark:text-slate-600">
                             Upgrade your website to match the 21st century
                         </p>
                     </article>
@@ -96,13 +96,13 @@ function Header() {
 
                     <article className="flex flex-col gap-8 md:max-w-2xl">
                         <h2 className="text-6xl font-semibold">Add an AI chatbot to your site</h2>
-                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                        <p className="text-sm text-gray-600 dark:text-slate-600">
                             Easily integrate intelligent assistants into your web platform to boost customer engagement, improve service, and enhance automation.
                         </p>
 
                         <EmailInput />
 
-                        <p className="text-sm text-gray-400 dark:text-slate-600">
+                        <p className="text-sm text-gray-600 dark:text-slate-600">
                             Upgrade your website to match the 21st century
                         </p>
                     </article>
