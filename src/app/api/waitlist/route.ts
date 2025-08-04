@@ -24,15 +24,15 @@ export async function POST(req: NextRequest) {
 
     // Send email
     await transporter.sendMail({
-      from: `"ProjectPulse" <${process.env.SMTP_USER}>`,
+      from: `"MyPlug" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "🎉 Thanks for joining the waitlist!",
       html: `
         <div style="font-family: sans-serif; line-height: 1.6;">
           <h2>You're on the list! 🎉</h2>
-          <p>Thanks for signing up to ProjectPulse. We're thrilled to have you on board.</p>
+          <p>Thanks for signing up to MyPlug. We're thrilled to have you on board.</p>
           <p>We'll keep you posted with updates and let you know as soon as you're invited to try out the platform.</p>
-          <p>– The ProjectPulse Team 🚀</p>
+          <p>– The MyPlug Team 🚀</p>
         </div>
       `,
     });
