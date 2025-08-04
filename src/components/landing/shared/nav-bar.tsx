@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/ui/theme-toggle"
-import { BookOpenText, Gem, Home, UsersRound } from "lucide-react"
+import { BookOpenText, Gem, Home, UserPlus, UsersRound } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
@@ -51,19 +51,14 @@ function NavBar() {
             icon: <Home />,
         },
         {
-            title: "Pricing",
-            href: "/pricing",
+            title: "Features",
+            href: "#features",
             icon: <Gem />,
         },
         {
-            title: "About",
-            href: "/about",
-            icon: <BookOpenText />,
-        },
-        {
-            title: "Team",
-            href: "/team",
-            icon: <UsersRound />,
+            title: "Join waitlist",
+            href: "#cta",
+            icon: <UserPlus />,
         },
     ]
 

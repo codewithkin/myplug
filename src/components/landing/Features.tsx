@@ -38,7 +38,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="w-full px-4 py-20 bg-gray-50 dark:bg-[#0b0b0e]">
+    <section id="features" className="w-full px-4 py-20 bg-gray-50 dark:bg-[#0b0b0e]">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

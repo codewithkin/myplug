@@ -27,7 +27,7 @@ export default function CtaSection() {
   });
 
   return (
-    <section className="w-full bg-gradient-to-br from-blue-600 to-purple-700 py-24 px-6 text-white">
+    <section id="cta" className="w-full bg-gradient-to-br from-blue-600 to-purple-700 py-24 px-6 text-white">
       <div className="mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
