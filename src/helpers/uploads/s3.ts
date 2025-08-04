@@ -1,5 +1,5 @@
 // Bun s3 client
-import { S3Client } from "bun";
+import { S3Client } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
     accessKeyId: Bun.env.SEVALLA_ACCESS_KEY_ID,
