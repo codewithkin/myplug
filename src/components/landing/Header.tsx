@@ -20,7 +20,7 @@ function Header() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="min-h-screen w-full bg-[#020617] relative dark:flex flex-col items-center py-12 hidden">
+                className="min-h-screen w-full bg-[#020617] relative dark:flex flex-col items-center py-16 hidden">
                 {/* Magenta Orb Grid Background */}
                 <div
                     className="absolute inset-0 z-0 "
