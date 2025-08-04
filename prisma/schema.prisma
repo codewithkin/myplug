@@ -25,8 +25,10 @@ model User {
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
+
   sessions      Session[]
   accounts      Account[]
+  chatBots      ChatBot[]
 
   @@unique([email])
   @@map("user")
@@ -75,4 +77,22 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model ChatBot {
+  id String @id @default(uuid())
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name String
+  purpose String
+  websiteUrl String
+
+  dataFile String? // Url to txt file with bot description
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("chatbot")
 }
