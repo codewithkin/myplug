@@ -7,3 +7,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model WaitlistUser {
+  id String @id @default(uuid())
+
+  email String @unique
+
+  joinedAt  DateTime @default(now())
+}
