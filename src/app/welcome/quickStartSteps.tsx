@@ -16,6 +16,7 @@ import { useDropzone } from "react-dropzone";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import { convertBytesTo } from "@/helpers/convertBytesTo";
 import axios from "axios";
+import { Dialog, DialogHeader, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogFooter } from "@/components/ui/dialog";
 
 export default function QuickStartSteps() {
   const [currentStep, setCurrentStep] = useState(2);
@@ -25,6 +26,13 @@ export default function QuickStartSteps() {
   const [chatbotWebsiteUrl, setChatbotWebsiteUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
+  const [apiKeyCopied, setApiKeyCopied] = useState<boolean>(false);
+
+  const [apiKeyGenerated, setApiKeyGenerated] = useState<boolean>(false);
+
+  const [apiKeyName, setApiKeyName] = useState("");
+  const [apiKey, setApiKey] = useState("");
+
   const installCommands = {
     npm: "npm install myplug",
     yarn: "yarn add myplug",
@@ -33,24 +41,48 @@ export default function QuickStartSteps() {
     deno: "deno add myplug",
   };
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFile(acceptedFiles[0]);
-    console.log(acceptedFiles);
-  }, [])
+  // const onDrop = useCallback((acceptedFiles: File[]) => {
+  //   setFile(acceptedFiles[0]);
+  //   console.log(acceptedFiles);
+  // }, [])
 
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+  // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+
+  const {mutate: createApiKey, isPending: isCreatingApiKey} = useMutation({
+    mutationFn: async () => {
+      const { data, error } = await authClient.apiKey.create({
+        name: apiKeyName,
+        expiresIn: 60 * 60 * 24 * 31, // 7 days
+        prefix: "myplug",
+    });
+
+    if(error) throw new Error(error.message);
+
+    return data;
+    },
+    onSuccess: (data) => {
+      toast.success("API key created successfully!", {
+        description: "It expires in 31 days"
+      });
+      setApiKeyGenerated(true);
+      setApiKey(data.key);
+    },
+    onError: () => {
+      toast.error("Failed to create API key");
+    }
+  })
 
   const { mutate: createChatbot, isPending } = useMutation({
     mutationFn: async () => {
       if(file) {
-        const bytes = await file?.arrayBuffer();
-      const buffer = await Buffer.from(bytes);
+      // const bytes = await file?.arrayBuffer();
+      // const buffer = await Buffer.from(bytes);
 
       const res = await axios.post("/api/chatbot", {
         name: chatbotName,
         purpose: chatbotPurpose,
         websiteUrl: chatbotWebsiteUrl,
-        dataFile: buffer
+        // dataFile: buffer
       });
 
       if (res.status !== 200) throw new Error("Failed to create chatbot");
@@ -100,9 +132,44 @@ export default function QuickStartSteps() {
         <AccordionItem className="border border-gray-300 px-4 rounded-xl mb-4" value="item-3">
           <AccordionTrigger>Get your API key</AccordionTrigger>
           <AccordionContent>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-              <p>Visit your <Link href="/settings/api-keys" className="text-blue-500 underline">API Keys</Link> page to get your key.</p>
-              <Button onClick={() => setCurrentStep(4)}>Mark as done</Button>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4 flex gap-4">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button>Create an API key</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>{apiKeyGenerated ? "Save API key" : "Create an API key"}</DialogTitle>
+                  </DialogHeader>
+                  <DialogDescription className="flex flex-col gap-2">
+                      <span>API keys are used to authenticate your requests to the MyPlug API</span>
+                      <Input placeholder="API key name" value={apiKeyName} onChange={e => setApiKeyName(e.target.value)} />
+                  </DialogDescription>
+                  <DialogFooter className="flex items-center justify-center gap-2">
+                    <Button disabled={apiKeyCopied || isCreatingApiKey} variant={apiKeyGenerated ? "outline" : "default"} onClick={() => {
+                      if(apiKeyGenerated) {
+                        navigator.clipboard.writeText(apiKey);
+                        toast.success("API key copied to clipboard");
+                        setApiKeyCopied(true);
+                        setApiKeyGenerated(false);
+                        setApiKeyName("");
+                        setApiKey("");
+
+                        setTimeout(() => {
+                          setCurrentStep(4);
+                        }, 2000);
+                      } else {
+                        createApiKey();
+                      }
+                    }} className="mt-4">  
+                       {isCreatingApiKey && <Loader2 className="w-4 h-4 animate-spin" />}
+                      {apiKeyGenerated ? "Copy API key" : "Create API key"} {apiKeyCopied && <CheckCircle className="w-4 h-4" />}</Button>
+                    <DialogClose asChild>
+                        <Button variant="ghost">Cancel</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </motion.div>
           </AccordionContent>
         </AccordionItem>
@@ -114,7 +181,7 @@ export default function QuickStartSteps() {
               <Input placeholder="Chatbot name" value={chatbotName} onChange={e => setChatbotName(e.target.value)} />
               <Textarea placeholder="What does this chatbot do?" value={chatbotPurpose} onChange={e => setChatbotPurpose(e.target.value)} />
               <Input placeholder="Website URL" value={chatbotWebsiteUrl} onChange={e => setChatbotWebsiteUrl(e.target.value)} />
-              <div className={`px-4 py-20 flex flex-col justify-center items-center border-2 rounded-xl border-dashed border-gray-400 ${isDragActive && "bg-blue-100 border-blue-500 dark:bg-blue-800 dark:border-blue-800"}`} {...getRootProps()}>
+              {/*<div className={`px-4 py-20 flex flex-col justify-center items-center border-2 rounded-xl border-dashed border-gray-400 ${isDragActive && "bg-blue-100 border-blue-500 dark:bg-blue-800 dark:border-blue-800"}`} {...getRootProps()}>
       <input {...getInputProps()} />
       {
         <>
@@ -139,9 +206,9 @@ export default function QuickStartSteps() {
           )}
           </>
       }
-    </div>
+              </div> */}
 
-              <article className="flex flex-col gap-4">
+              <article className="lex hidden flex-col gap-4">
                 {
                     file && (
                         <article className="flex p-4 items-center justify-between rounded-md dark:bg-slate-800 bg-gray-100">
@@ -165,14 +232,13 @@ export default function QuickStartSteps() {
                           </Button>
                         </article>
                     )
-                }
-              </article>
+              }
+              </article> 
 
               <Button onClick={() => createChatbot()} disabled={isPending || !file || !chatbotName || !chatbotPurpose || !chatbotWebsiteUrl}>
                 {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
                 {isPending ? "Creating your chatbot..." : "Create Chatbot"}
               </Button>
-            
             </motion.div>
           </AccordionContent>
         </AccordionItem>
