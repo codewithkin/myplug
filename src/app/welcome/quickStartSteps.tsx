@@ -53,7 +53,7 @@ export default function QuickStartSteps() {
       const { data, error } = await authClient.apiKey.create({
         name: apiKeyName,
         expiresIn: 60 * 60 * 24 * 31, // 7 days
-        prefix: "myplug",
+        prefix: "myplug_",
     });
 
     if(error) throw new Error(error.message);
