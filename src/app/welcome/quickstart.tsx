@@ -1,21 +1,31 @@
 "use client";
 
-import { Video } from "lucide-react";
+import { FastForward, Video } from "lucide-react";
 import Link from "next/link";
 import QuickStartSteps from "./quickStartSteps";
+import { Button } from "@/components/ui/button";
 
 export default function QuickStart() {
   
     return (
         <article className="flex shadow-md w-full border rounded-xl border-blue-500 dark:border-slate-700 flex-col items-center w-full p-4 justify-center gap-4">
-            <article className="w-full flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Let's get you started</h2>
+            <article className="w-full flex md:flex-row flex-co items-center justify-between">
+                <h2 className="text-lg font-semibold">Let's get you started</h2>
 
-            <Link href="#" className="flex gap-2 text-blue-500 dark:text-slate-700 font-semibold items-center">
-                <Video size={16} strokeWidth={2} />
+                <article className="flexl items-center md:gap-4">
+                    <Link href="#" className="flex gap-2 text-blue-500 dark:text-slate-700 font-semibold items-center">
+                        <Video size={16} strokeWidth={2} />
 
-                <p className="text-sm">Watch tutorials</p>
-            </Link>
+                        <p className="text-sm">Tutorials</p>
+                    </Link>
+                    <Button className="bg-blue-500 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-900" asChild>
+                        <Link href="/dashboard" className="flex gap-2 text-white font-semibold items-center">
+                            <FastForward size={16} strokeWidth={2} />
+
+                            <p className="text-sm">Skip</p>
+                        </Link>
+                    </Button>
+                </article>
             </article>
 
            <QuickStartSteps />
