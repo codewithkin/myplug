@@ -93,6 +93,8 @@ model ChatBot {
 
   assistantId String
 
+  template  String
+
   dataFile String? // Url to txt file with bot description
 
   createdAt DateTime @default(now())
