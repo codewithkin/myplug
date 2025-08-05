@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 export default function QuickStart() {
   
     return (
-        <article className="flex shadow-md w-full border rounded-xl border-blue-500 dark:border-slate-700 flex-col items-center w-full p-4 justify-center gap-4">
+        <article className="flex shadow-md w-full border rounded-xl border-slate-400 dark:border-slate-700 flex-col items-center w-full p-4 justify-center gap-4">
             <article className="w-full flex md:flex-row flex-col gap-2 items-center justify-between">
                 <h2 className="text-lg font-semibold">Let's get you started</h2>
 
