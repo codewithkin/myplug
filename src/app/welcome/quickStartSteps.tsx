@@ -235,7 +235,7 @@ export default function QuickStartSteps() {
               }
               </article> 
 
-              <Button onClick={() => createChatbot()} disabled={isPending || !file || !chatbotName || !chatbotPurpose || !chatbotWebsiteUrl}>
+              <Button onClick={() => createChatbot()} disabled={isPending || !chatbotName || !chatbotPurpose || !chatbotWebsiteUrl}>
                 {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
                 {isPending ? "Creating your chatbot..." : "Create Chatbot"}
               </Button>
