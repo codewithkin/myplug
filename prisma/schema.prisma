@@ -91,6 +91,8 @@ model ChatBot {
   purpose String
   websiteUrl String
 
+  assistantId String
+
   dataFile String? // Url to txt file with bot description
 
   createdAt DateTime @default(now())
