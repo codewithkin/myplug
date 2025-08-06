@@ -1,12 +1,9 @@
 import { plans } from "@/data/plans";
 import { prisma } from "@/helpers/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import createAssistant from "@/helpers/ai/assistant/createAssistant";
 import checkAuthStatus from "@/helpers/server/checkAuthStatus";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import generatePurposePromptAssistant from "@/helpers/ai/assistant/generateAssistantPurposePrompt";
-import getResponseFromAssistant from "@/helpers/ai/assistant/getResponseFromAssistant";
 
 export async function POST(req: NextRequest) {
 
@@ -51,7 +48,6 @@ export async function POST(req: NextRequest) {
             data: {
                 name,
                 websiteUrl,
-                assistantId: "asst_01JF11111111111111111111",
                 user: {
                     connect: {
                         id: userId
