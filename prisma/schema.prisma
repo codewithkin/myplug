@@ -92,6 +92,8 @@ model ChatBot {
   name       String
   websiteUrl String
 
+  messages  Message[]
+
   template String
 
   dataFile String? // Url to txt file with bot description
@@ -127,4 +129,15 @@ model Apikey {
   metadata            String?
 
   @@map("apikey")
+}
+
+model Message {
+  id  String @id @default(uuid())
+
+  chatBotId String 
+  chatBot ChatBot @relation(fields: [chatBotId], references: [id])
+
+  content String
+
+  createdAt DateTime @default(now())
 }
