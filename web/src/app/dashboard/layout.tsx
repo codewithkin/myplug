@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Dashboard",
-    description: "Your MyOkug Dashboard"
+    description: "Your MyPlug Dashboard"
 }
 
 export default function WelcomeLayout({ children }: { children: React.ReactNode }) {
