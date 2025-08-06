@@ -21,11 +21,11 @@ function MobileAppSidebarContent () {
                 name: "Dashboard",
                 href: "/dashboard"
             },
-            {
-                icon: <Settings />,
-                name: "Settings",
-                href: "/settings"
-            },
+            // {
+            //     icon: <Settings />,
+            //     name: "Settings",
+            //     href: "/settings"
+            // },
             {
                 icon: <KeySquare />,
                 name: "API Keys",
@@ -75,11 +75,11 @@ export default function Sidebar () {
             name: "Dashboard",
             href: "/dashboard"
         },
-        {
-            icon: <Settings />,
-            name: "Settings",
-            href: "/settings"
-        },
+        // {
+        //     icon: <Settings />,
+        //     name: "Settings",
+        //     href: "/settings"
+        // },
         {
             icon: <KeySquare />,
             name: "API Keys",
