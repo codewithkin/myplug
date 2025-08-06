@@ -90,10 +90,7 @@ model ChatBot {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   name       String
-  purpose    String
   websiteUrl String
-
-  assistantId String
 
   template String
 

@@ -74,21 +74,15 @@ export default function QuickStartSteps() {
 
   const { mutate: createChatbot, isPending } = useMutation({
     mutationFn: async () => {
-      if(file) {
-      // const bytes = await file?.arrayBuffer();
-      // const buffer = await Buffer.from(bytes);
-
       const res = await axios.post("/api/chatbot", {
         name: chatbotName,
         purpose: chatbotPurpose,
         websiteUrl: chatbotWebsiteUrl,
-        // dataFile: buffer
       });
 
       if (res.status !== 200) throw new Error("Failed to create chatbot");
 
       return res.data;
-      }
     },
     onSuccess: () => {
       toast.success("Chatbot created successfully!");

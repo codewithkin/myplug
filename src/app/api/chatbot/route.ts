@@ -6,6 +6,7 @@ import checkAuthStatus from "@/helpers/server/checkAuthStatus";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import generatePurposePromptAssistant from "@/helpers/ai/assistant/generateAssistantPurposePrompt";
+import getResponseFromAssistant from "@/helpers/ai/assistant/getResponseFromAssistant";
 
 export async function POST(req: NextRequest) {
 
@@ -45,32 +46,12 @@ export async function POST(req: NextRequest) {
             }, { status: 400 })
         }
 
-        // Create an assistant
-        const assistantId = await createAssistant({
-            assistantName: name,
-            purpose
-        })
-
-        // Check if the assistant was created
-        if(!assistantId) {
-            return NextResponse.json({
-                message: "Failed to create assistant"
-            }, { status: 400 })
-        }
-
-        const refinedPurpose = await generatePurposePromptAssistant({
-            website: websiteUrl,
-            purpose,
-            name
-        })
-
         // Create a chatbot
         await prisma.chatBot.create({
             data: {
                 name,
-                purpose: refinedPurpose,
                 websiteUrl,
-                assistantId,
+                assistantId: "asst_01JF11111111111111111111",
                 user: {
                     connect: {
                         id: userId
