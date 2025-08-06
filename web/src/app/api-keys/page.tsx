@@ -9,6 +9,7 @@ import { Check, Copy, Key, Trash } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import APIKeyRow from "./components/APIKeyRow"
+import CreateNewAPIKeyDialog from "./components/CreateNewAPIKeyDialog"
 
 export default function APIKeysPage() {
     // Fetch all API keys for the user
@@ -21,7 +22,10 @@ export default function APIKeysPage() {
 
     return (
         <article className="flex w-full flex-col gap-4 px-4 sm:px-8 md:px-16 py-10">
-            <h1 className="text-2xl font-semibold">Your API Keys</h1>
+            <article className="flex flex-col gap-2">
+                <h1 className="text-2xl font-semibold">Your API Keys</h1>
+                <CreateNewAPIKeyDialog />
+            </article>
 
             {
                 process.env.NODE_ENV === "development" && (
