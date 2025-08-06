@@ -1,12 +1,26 @@
 {
-  "name": "npm-package",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "myplug-ai",
+  "version": "0.1.0",
+  "main": "dist/my-plug-ai.js",
+  "type": "module",
+  "module": "./dist/my-plug-ai.js",
+  "types": "./dist/my-plug-ai.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build",
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.0.6"
+  }
 }
