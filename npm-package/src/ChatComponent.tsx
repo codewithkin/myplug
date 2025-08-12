@@ -36,25 +36,28 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
 
   useEffect(() => {
     const validateApiKey = async () => {
-      setError(null);       // Reset error
+      setError(null); 
       if (!apiKey) {
         setError("API key is required");
         return;
       }
       setIsLoading(true);
       try {
-        const res = await axios.get(`${process.env.BACKEND_URL}/api/api-keys?apiKey=${apiKey}`);
+        const res = await axios.get(`http://localhost:3000/api/api-keys?apiKey=${apiKey}`);
         if (res.status !== 200) {
           setError("Invalid API key");
         }
       } catch (err) {
-        setError("Failed to validate API key");
+        setError("Invalid API key");
       } finally {
         setIsLoading(false);
       }
     };
 
-    validateApiKey();
+    (async () => {
+      await validateApiKey();
+    })();
+
   }, [apiKey]);
 
   return (
@@ -67,7 +70,7 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className={`flex border border-gray-300 md:w-1/4 z-40 flex-col bg-white rounded-xl fixed right-4 bottom-4 gap-4`}
+            className={`flex border border-gray-300 w-[500px] z-40 flex-col bg-white rounded-xl fixed right-4 bottom-4 gap-4`}
           >
             {/* Top bar */}
             <article className={`flex items-center justify-between gap-2 border-b border-gray-300 p-4`}>
@@ -97,7 +100,16 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
 
             {/* Show loading or error states */}
             {isLoading && (
-              <article className="p-4 text-center text-gray-500 bg-gray-100">Validating API key...</article>
+              <article 
+              style={{
+                backgroundColor: "lightgray",
+                color: "gray",
+                border: "1px solid lightgray",
+                padding: "10px",
+                margin: "10px",
+                borderRadius: "10px"
+              }}
+              className="p-4 text-center text-gray-500 bg-gray-100">Validating API key...</article>
             )}
             {errorMessage && (
               <article className="p-4 text-center text-red-600 border rounded-xl border-red-600 bg-red-100 font-semibold flex flex-col items-center justfiy-center">
@@ -138,7 +150,7 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
                 }}
                 type="text"
                 placeholder="Ask me anything..."
-                className={`w-full placeholder:text-slate-500 p-2 rounded-md border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-blue-500 border-gray-300`}
+                className={`w-full placeholder:text-slate-500 py-2 pl-4 rounded-md border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-blue-500 border-gray-300`}
               />
               <button
                 className={`bg-blue-500 hover:bg-blue-700 transition-all duration-300 text-white p-2 rounded-md`}
