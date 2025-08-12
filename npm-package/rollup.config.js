@@ -6,7 +6,7 @@ import dts from "rollup-plugin-dts";
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
-import postFile from "./postcss.config.mjs";
+import json from "@rollup/plugin-json";
 
 export default [
   {
@@ -27,6 +27,7 @@ export default [
         peerDepsExternal(),
         resolve(),
         commonjs(),
+        json(),
         postcss(),
         typescript({
           tsconfig: "./tsconfig.json"
