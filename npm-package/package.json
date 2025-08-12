@@ -1,26 +1,27 @@
 {
-  "name": "myplug-ai",
-  "version": "0.1.0",
-  "main": "dist/my-plug-ai.js",
-  "type": "module",
-  "module": "./dist/my-plug-ai.js",
-  "types": "./dist/my-plug-ai.d.ts",
+  "name": "myplug",
+  "version": "0.5.0",
+  "description": "Hello",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite"
+    "build": "rollup -c --bundleConfigAsCjs"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
-  },
   "devDependencies": {
-    "@types/react": "^19.1.9",
-    "@vitejs/plugin-react": "^4.7.0",
-    "typescript": "^5.9.2",
-    "vite": "^7.0.6"
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "react": "^19.1.1",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }
