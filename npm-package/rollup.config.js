@@ -6,6 +6,7 @@ import dts from "rollup-plugin-dts";
 import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
+import postFile from "./postcss.config.mjs";
 
 export default [
   {

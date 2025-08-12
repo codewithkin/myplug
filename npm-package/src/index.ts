@@ -1,3 +1,1 @@
-import MyReactComponent from "@/MyReactComponent";
-
-export default MyReactComponent;
+export { default as ChatComponent } from "@/ChatComponent";
