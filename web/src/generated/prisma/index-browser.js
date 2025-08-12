@@ -184,6 +184,13 @@ exports.Prisma.ChatBotScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ChatScalarFieldEnum = {
+  id: 'id',
+  chatBotId: 'chatBotId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ApikeyScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -210,7 +217,7 @@ exports.Prisma.ApikeyScalarFieldEnum = {
 
 exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
-  chatBotId: 'chatBotId',
+  chatId: 'chatId',
   content: 'content',
   createdAt: 'createdAt'
 };
@@ -238,6 +245,7 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Verification: 'Verification',
   ChatBot: 'ChatBot',
+  Chat: 'Chat',
   Apikey: 'Apikey',
   Message: 'Message'
 };

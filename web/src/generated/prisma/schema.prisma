@@ -91,7 +91,7 @@ model ChatBot {
   name       String
   websiteUrl String
 
-  messages Message[]
+  chats Chat[]
 
   template String
 
@@ -101,6 +101,20 @@ model ChatBot {
   updatedAt DateTime @updatedAt
 
   @@map("chatbot")
+}
+
+model Chat {
+  id String @id @default(uuid())
+
+  chatBotId String
+  chatBot   ChatBot @relation(fields: [chatBotId], references: [id], onDelete: Cascade)
+
+  messages Message[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("chat")
 }
 
 model Apikey {
@@ -133,10 +147,12 @@ model Apikey {
 model Message {
   id String @id @default(uuid())
 
-  chatBotId String
-  chatBot   ChatBot @relation(fields: [chatBotId], references: [id])
+  chatId String
+  chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
 
   content String
 
   createdAt DateTime @default(now())
+
+  @@map("message")
 }
