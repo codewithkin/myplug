@@ -4,9 +4,12 @@ import "./index.css";
 import { ReactNode, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { useChatStore } from "./store/chatStore";
+import { Chat } from "./types";
 
 interface Props {
   chatBotName: string;
+  chatBotId: string;
   website: string;
   apiKey?: string;
 }
@@ -16,9 +19,12 @@ interface Message {
   content: string;
 }
 
-export default function ChatComponent({ chatBotName, website, apiKey }: Props): ReactNode {
+export default function ChatComponent({ chatBotName, website, apiKey, chatBotId }: Props): ReactNode {
   // track the messages
   const [messages, setMessages] = useState<Message[]>([]);
+
+  // Track the input
+  const [input, setInput] = useState<string>("");
 
   // Track the error
   const [errorMessage, setError] = useState<string | null>(null);
@@ -29,24 +35,98 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
   // track the opening / closing of the dialog
   const [open, setOpen] = useState<boolean>(false);
 
+  // Get the id of the current chat
+  const { chatId, setChatId } = useChatStore();
+
   // handle the opening / closing of the dialog
   const handleOpen = () => {
     setOpen(!open);
   };
 
   useEffect(() => {
+    const getChat = async () => {
+      try {
+        if(!chatId) {
+          if(!chatBotId) {
+            setError("Please provide the chatBotId");
+            return;
+          }
+  
+          // Create the chat
+          const res = await axios.post(`http://localhost:3000/api/chat?chatBotId=${chatBotId}`);
+  
+          if(res.status !== 200) {
+            setError("Failed to create chat");
+            return;
+          }
+  
+          const data = res.data as Chat;
+  
+          setChatId(data.id);
+
+          await getMessages();
+          return;
+        }
+  
+        const res = await axios.get(`http://localhost:3000/api/chat?chatId=${chatId}`);
+  
+        if(res.status !== 200) {
+          setError("Failed to fetch chat");
+
+          return;
+        }
+  
+        await getMessages();
+      } catch (e) {
+        console.log("An error occured while fetching chat: ", e);
+
+        setError("An error occured while fetching chat");
+      }
+    }
+
+    const getMessages = async () => {
+      try {
+        if(!chatId) {
+          setError("Please provide the chatId");
+
+          return;
+        }
+
+        const res = await axios.get(`http://localhost:3000/api/messages?chatId=${chatId}`);
+
+        if(res.status !== 200) {
+          setError("Failed to fetch messages");
+
+          return;
+        }
+
+        const data = res.data as { chat: Chat, messages: Message[] };
+        setMessages(data.messages);
+      } catch (e) {
+        console.log("An error occuredd while fetching messages: ", e);
+
+        setError("An error occuredd while fetching messages");
+      }
+    }
+
     const validateApiKey = async () => {
       setError(null); 
       if (!apiKey) {
         setError("API key is required");
         return;
       }
+
       setIsLoading(true);
+
       try {
         const res = await axios.get(`http://localhost:3000/api/api-keys?apiKey=${apiKey}`);
         if (res.status !== 200) {
           setError("Invalid API key");
+          return;
         }
+
+        // Get the messages
+        await getChat();
       } catch (err) {
         setError("Invalid API key");
       } finally {
@@ -58,7 +138,38 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
       await validateApiKey();
     })();
 
-  }, [apiKey]);
+  }, [apiKey, chatId]);
+
+  const sendMessage = async ({
+    message,
+    chatId
+  }: {
+    message: string;
+    chatId?: string;
+  }) => {
+    try {
+      // Send the message to the backend
+      const res = await axios.post(`http://localhost:3000/api/messages?chatId=${chatId}`, {
+        message
+      });
+
+      if(res.status !== 200) {
+        throw new Error("Failed to send message");
+      }
+
+      // Add the user's message to the messages array
+      setMessages([...messages, { role: "user", content: message }]);
+
+      const data = res.data as { content: string };
+
+      setMessages([...messages, { role: "assistant", content: data.content }]);
+
+      // Clear the input field
+      setInput("");
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <>
@@ -137,7 +248,9 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
                     <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
                   </svg>
 
-                  <p className="text-sm text-slate-500">No messages yet..</p>
+                  <p style={{
+                    color: "gray"
+                  }} className="text-sm text-slate-700 text-center">No messages yet..</p>
                 </article>
               </article>
             )}
@@ -148,11 +261,14 @@ export default function ChatComponent({ chatBotName, website, apiKey }: Props): 
                 style={{
                   color: "black"
                 }}
+                onChange={(e) => setInput(e.target.value)}
+                value={input}
                 type="text"
                 placeholder="Ask me anything..."
                 className={`w-full placeholder:text-slate-500 py-2 pl-4 rounded-md border focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-blue-500 border-gray-300`}
               />
               <button
+                onClick={() => sendMessage({ message: input, chatId })}
                 className={`bg-blue-500 hover:bg-blue-700 transition-all duration-300 text-white p-2 rounded-md`}
               >
                 <svg
