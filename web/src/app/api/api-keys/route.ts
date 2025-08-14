@@ -17,6 +17,8 @@ export async function GET (req: NextRequest) {
             },
         });
 
+        console.log("Result: ", result);
+
         if (!result.valid) {
             return NextResponse.json({ error: "Invalid API key" }, { status: 401 });
         }
