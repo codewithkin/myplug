@@ -12,7 +12,7 @@ function Home() {
     return (
         <article>
             <Header />
-            <ChatComponent chatBotName="MyPlug" website="https://myplug.ai" apiKey="1234567890" />
+            <ChatComponent chatBotId="08c27729-7c85-4781-ac2a-5f8e6030b724" chatBotName="MyPlug" website="https://myplug.ai" apiKey="myplug_iCfPRVBNpGKXUMGxWFhFGRxPiIPHArWZfUVndcFTuNFwlCXEPHMEkYJEFWnqLJIa" />
             <Steps />
             <FeaturesSection />
             <WhoItsForSection />
