@@ -218,6 +218,7 @@ exports.Prisma.ApikeyScalarFieldEnum = {
 exports.Prisma.MessageScalarFieldEnum = {
   id: 'id',
   chatId: 'chatId',
+  role: 'role',
   content: 'content',
   createdAt: 'createdAt'
 };

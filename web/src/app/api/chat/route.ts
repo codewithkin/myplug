@@ -59,6 +59,16 @@ export async function POST(req: NextRequest) {
             }
         });
 
+        
+        // Create a system message
+        await prisma.message.create({
+            data: {
+                chatId: newChat.id,
+                role: "system",
+                content: "You are a helpful assistant"
+            }
+        });
+
         // Return the chat data
         return NextResponse.json(newChat);
     } catch (error) {

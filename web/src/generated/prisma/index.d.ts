@@ -10693,6 +10693,7 @@ export namespace Prisma {
   export type MessageMinAggregateOutputType = {
     id: string | null
     chatId: string | null
+    role: string | null
     content: string | null
     createdAt: Date | null
   }
@@ -10700,6 +10701,7 @@ export namespace Prisma {
   export type MessageMaxAggregateOutputType = {
     id: string | null
     chatId: string | null
+    role: string | null
     content: string | null
     createdAt: Date | null
   }
@@ -10707,6 +10709,7 @@ export namespace Prisma {
   export type MessageCountAggregateOutputType = {
     id: number
     chatId: number
+    role: number
     content: number
     createdAt: number
     _all: number
@@ -10716,6 +10719,7 @@ export namespace Prisma {
   export type MessageMinAggregateInputType = {
     id?: true
     chatId?: true
+    role?: true
     content?: true
     createdAt?: true
   }
@@ -10723,6 +10727,7 @@ export namespace Prisma {
   export type MessageMaxAggregateInputType = {
     id?: true
     chatId?: true
+    role?: true
     content?: true
     createdAt?: true
   }
@@ -10730,6 +10735,7 @@ export namespace Prisma {
   export type MessageCountAggregateInputType = {
     id?: true
     chatId?: true
+    role?: true
     content?: true
     createdAt?: true
     _all?: true
@@ -10810,6 +10816,7 @@ export namespace Prisma {
   export type MessageGroupByOutputType = {
     id: string
     chatId: string
+    role: string
     content: string
     createdAt: Date
     _count: MessageCountAggregateOutputType | null
@@ -10834,6 +10841,7 @@ export namespace Prisma {
   export type MessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     chatId?: boolean
+    role?: boolean
     content?: boolean
     createdAt?: boolean
     chat?: boolean | ChatDefaultArgs<ExtArgs>
@@ -10842,6 +10850,7 @@ export namespace Prisma {
   export type MessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     chatId?: boolean
+    role?: boolean
     content?: boolean
     createdAt?: boolean
     chat?: boolean | ChatDefaultArgs<ExtArgs>
@@ -10850,6 +10859,7 @@ export namespace Prisma {
   export type MessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     chatId?: boolean
+    role?: boolean
     content?: boolean
     createdAt?: boolean
     chat?: boolean | ChatDefaultArgs<ExtArgs>
@@ -10858,11 +10868,12 @@ export namespace Prisma {
   export type MessageSelectScalar = {
     id?: boolean
     chatId?: boolean
+    role?: boolean
     content?: boolean
     createdAt?: boolean
   }
 
-  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "chatId" | "content" | "createdAt", ExtArgs["result"]["message"]>
+  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "chatId" | "role" | "content" | "createdAt", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chat?: boolean | ChatDefaultArgs<ExtArgs>
   }
@@ -10881,6 +10892,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       chatId: string
+      role: string
       content: string
       createdAt: Date
     }, ExtArgs["result"]["message"]>
@@ -11309,6 +11321,7 @@ export namespace Prisma {
   interface MessageFieldRefs {
     readonly id: FieldRef<"Message", 'String'>
     readonly chatId: FieldRef<"Message", 'String'>
+    readonly role: FieldRef<"Message", 'String'>
     readonly content: FieldRef<"Message", 'String'>
     readonly createdAt: FieldRef<"Message", 'DateTime'>
   }
@@ -11861,6 +11874,7 @@ export namespace Prisma {
   export const MessageScalarFieldEnum: {
     id: 'id',
     chatId: 'chatId',
+    role: 'role',
     content: 'content',
     createdAt: 'createdAt'
   };
@@ -12575,6 +12589,7 @@ export namespace Prisma {
     NOT?: MessageWhereInput | MessageWhereInput[]
     id?: StringFilter<"Message"> | string
     chatId?: StringFilter<"Message"> | string
+    role?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
     chat?: XOR<ChatScalarRelationFilter, ChatWhereInput>
@@ -12583,6 +12598,7 @@ export namespace Prisma {
   export type MessageOrderByWithRelationInput = {
     id?: SortOrder
     chatId?: SortOrder
+    role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     chat?: ChatOrderByWithRelationInput
@@ -12594,6 +12610,7 @@ export namespace Prisma {
     OR?: MessageWhereInput[]
     NOT?: MessageWhereInput | MessageWhereInput[]
     chatId?: StringFilter<"Message"> | string
+    role?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
     chat?: XOR<ChatScalarRelationFilter, ChatWhereInput>
@@ -12602,6 +12619,7 @@ export namespace Prisma {
   export type MessageOrderByWithAggregationInput = {
     id?: SortOrder
     chatId?: SortOrder
+    role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     _count?: MessageCountOrderByAggregateInput
@@ -12615,6 +12633,7 @@ export namespace Prisma {
     NOT?: MessageScalarWhereWithAggregatesInput | MessageScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Message"> | string
     chatId?: StringWithAggregatesFilter<"Message"> | string
+    role?: StringWithAggregatesFilter<"Message"> | string
     content?: StringWithAggregatesFilter<"Message"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Message"> | Date | string
   }
@@ -13305,6 +13324,7 @@ export namespace Prisma {
 
   export type MessageCreateInput = {
     id?: string
+    role: string
     content: string
     createdAt?: Date | string
     chat: ChatCreateNestedOneWithoutMessagesInput
@@ -13313,12 +13333,14 @@ export namespace Prisma {
   export type MessageUncheckedCreateInput = {
     id?: string
     chatId: string
+    role: string
     content: string
     createdAt?: Date | string
   }
 
   export type MessageUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chat?: ChatUpdateOneRequiredWithoutMessagesNestedInput
@@ -13327,6 +13349,7 @@ export namespace Prisma {
   export type MessageUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     chatId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13334,12 +13357,14 @@ export namespace Prisma {
   export type MessageCreateManyInput = {
     id?: string
     chatId: string
+    role: string
     content: string
     createdAt?: Date | string
   }
 
   export type MessageUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13347,6 +13372,7 @@ export namespace Prisma {
   export type MessageUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     chatId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13906,6 +13932,7 @@ export namespace Prisma {
   export type MessageCountOrderByAggregateInput = {
     id?: SortOrder
     chatId?: SortOrder
+    role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
   }
@@ -13913,6 +13940,7 @@ export namespace Prisma {
   export type MessageMaxOrderByAggregateInput = {
     id?: SortOrder
     chatId?: SortOrder
+    role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
   }
@@ -13920,6 +13948,7 @@ export namespace Prisma {
   export type MessageMinOrderByAggregateInput = {
     id?: SortOrder
     chatId?: SortOrder
+    role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
   }
@@ -15070,12 +15099,14 @@ export namespace Prisma {
 
   export type MessageCreateWithoutChatInput = {
     id?: string
+    role: string
     content: string
     createdAt?: Date | string
   }
 
   export type MessageUncheckedCreateWithoutChatInput = {
     id?: string
+    role: string
     content: string
     createdAt?: Date | string
   }
@@ -15145,6 +15176,7 @@ export namespace Prisma {
     NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
     id?: StringFilter<"Message"> | string
     chatId?: StringFilter<"Message"> | string
+    role?: StringFilter<"Message"> | string
     content?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
   }
@@ -15527,24 +15559,28 @@ export namespace Prisma {
 
   export type MessageCreateManyChatInput = {
     id?: string
+    role: string
     content: string
     createdAt?: Date | string
   }
 
   export type MessageUpdateWithoutChatInput = {
     id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageUncheckedUpdateWithoutChatInput = {
     id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MessageUncheckedUpdateManyWithoutChatInput = {
     id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

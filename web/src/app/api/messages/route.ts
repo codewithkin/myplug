@@ -41,13 +41,21 @@ export async function POST(req: NextRequest) {
         // Create the message
         await prisma.message.create({
             data: {
+                role: "user",
                 chatId: chatId,
                 content: message
             }
         });
 
+        // Get the messages for the chat
+        const messages = await prisma.message.findMany({
+            where: {
+                chatId: chatId
+            }
+        });
+
         // Get the AI's response
-        const aiResponse = await generateAiResponse(message);
+        const aiResponse = await generateAiResponse(message, messages);
 
         console.log("AI Response: ", aiResponse);
 

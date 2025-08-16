@@ -151,6 +151,7 @@ model Message {
   chatId String
   chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
 
+  role String // system, user, assistant
   content String
 
   createdAt DateTime @default(now())

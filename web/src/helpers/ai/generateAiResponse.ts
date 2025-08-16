@@ -1,15 +1,11 @@
+import { Message } from "@/generated/prisma";
 import openaiClient from ".";
 
-export default async function generateAiResponse(message: string) {
+export default async function generateAiResponse(message: string, messages: Message[] | any) {
     try {
         const response = await openaiClient.chat.completions.create({
             model: "deepseek-ai/DeepSeek-R1-fast",
-            messages: [
-                {
-                    role: "user",
-                    content: message
-                }
-            ]
+            messages
         })
 
         // For DeepSeek models, the response will have a thought process inside <think></think> tags, so for now let's remove the thought process and only return what is after them (that is, the actual response)
