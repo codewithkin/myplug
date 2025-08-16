@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
                 role: "system",
                 content: await generatePurposePromptAssistant({
                     website: chatBotData.websiteUrl,
-                    purpose: chatBotData.purpose,
+                    purpose: chatBotData.purpose || "",
                     name: chatBotData.name
                 })
             }

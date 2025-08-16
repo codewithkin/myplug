@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
         const { name, purpose, websiteUrl } = await req.json() as { name: string, purpose: string, websiteUrl: string };
 
         checkAuthStatus(req);
-
         
         const session = await auth.api.getSession({
             headers: await headers()
@@ -32,12 +31,14 @@ export async function POST(req: NextRequest) {
         const plan = plans.find((plan) => plan.name.toLowerCase() === user?.plan.toLowerCase());
 
         if (!plan) {
+            console.log("User has not selected a plan");
             return NextResponse.json({
                 message: "You have not selected a plan"
             }, { status: 400 })
         }
 
         if((user?.chatBots?.length || 0) >= plan.chatBots) {
+            console.log("User has reached their chatbot limit");
             return NextResponse.json({
                 message: "You have reached your chatbot limit"
             }, { status: 400 })
