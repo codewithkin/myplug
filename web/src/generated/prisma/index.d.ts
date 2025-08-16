@@ -7173,6 +7173,7 @@ export namespace Prisma {
     userId: string | null
     name: string | null
     websiteUrl: string | null
+    purpose: string | null
     template: string | null
     dataFile: string | null
     createdAt: Date | null
@@ -7184,6 +7185,7 @@ export namespace Prisma {
     userId: string | null
     name: string | null
     websiteUrl: string | null
+    purpose: string | null
     template: string | null
     dataFile: string | null
     createdAt: Date | null
@@ -7195,6 +7197,7 @@ export namespace Prisma {
     userId: number
     name: number
     websiteUrl: number
+    purpose: number
     template: number
     dataFile: number
     createdAt: number
@@ -7208,6 +7211,7 @@ export namespace Prisma {
     userId?: true
     name?: true
     websiteUrl?: true
+    purpose?: true
     template?: true
     dataFile?: true
     createdAt?: true
@@ -7219,6 +7223,7 @@ export namespace Prisma {
     userId?: true
     name?: true
     websiteUrl?: true
+    purpose?: true
     template?: true
     dataFile?: true
     createdAt?: true
@@ -7230,6 +7235,7 @@ export namespace Prisma {
     userId?: true
     name?: true
     websiteUrl?: true
+    purpose?: true
     template?: true
     dataFile?: true
     createdAt?: true
@@ -7314,6 +7320,7 @@ export namespace Prisma {
     userId: string
     name: string
     websiteUrl: string
+    purpose: string | null
     template: string
     dataFile: string | null
     createdAt: Date
@@ -7342,6 +7349,7 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     websiteUrl?: boolean
+    purpose?: boolean
     template?: boolean
     dataFile?: boolean
     createdAt?: boolean
@@ -7356,6 +7364,7 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     websiteUrl?: boolean
+    purpose?: boolean
     template?: boolean
     dataFile?: boolean
     createdAt?: boolean
@@ -7368,6 +7377,7 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     websiteUrl?: boolean
+    purpose?: boolean
     template?: boolean
     dataFile?: boolean
     createdAt?: boolean
@@ -7380,13 +7390,14 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     websiteUrl?: boolean
+    purpose?: boolean
     template?: boolean
     dataFile?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ChatBotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "websiteUrl" | "template" | "dataFile" | "createdAt" | "updatedAt", ExtArgs["result"]["chatBot"]>
+  export type ChatBotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "websiteUrl" | "purpose" | "template" | "dataFile" | "createdAt" | "updatedAt", ExtArgs["result"]["chatBot"]>
   export type ChatBotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     chats?: boolean | ChatBot$chatsArgs<ExtArgs>
@@ -7410,6 +7421,7 @@ export namespace Prisma {
       userId: string
       name: string
       websiteUrl: string
+      purpose: string | null
       template: string
       dataFile: string | null
       createdAt: Date
@@ -7843,6 +7855,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"ChatBot", 'String'>
     readonly name: FieldRef<"ChatBot", 'String'>
     readonly websiteUrl: FieldRef<"ChatBot", 'String'>
+    readonly purpose: FieldRef<"ChatBot", 'String'>
     readonly template: FieldRef<"ChatBot", 'String'>
     readonly dataFile: FieldRef<"ChatBot", 'String'>
     readonly createdAt: FieldRef<"ChatBot", 'DateTime'>
@@ -11825,6 +11838,7 @@ export namespace Prisma {
     userId: 'userId',
     name: 'name',
     websiteUrl: 'websiteUrl',
+    purpose: 'purpose',
     template: 'template',
     dataFile: 'dataFile',
     createdAt: 'createdAt',
@@ -12328,6 +12342,7 @@ export namespace Prisma {
     userId?: StringFilter<"ChatBot"> | string
     name?: StringFilter<"ChatBot"> | string
     websiteUrl?: StringFilter<"ChatBot"> | string
+    purpose?: StringNullableFilter<"ChatBot"> | string | null
     template?: StringFilter<"ChatBot"> | string
     dataFile?: StringNullableFilter<"ChatBot"> | string | null
     createdAt?: DateTimeFilter<"ChatBot"> | Date | string
@@ -12341,6 +12356,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     websiteUrl?: SortOrder
+    purpose?: SortOrderInput | SortOrder
     template?: SortOrder
     dataFile?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -12357,6 +12373,7 @@ export namespace Prisma {
     userId?: StringFilter<"ChatBot"> | string
     name?: StringFilter<"ChatBot"> | string
     websiteUrl?: StringFilter<"ChatBot"> | string
+    purpose?: StringNullableFilter<"ChatBot"> | string | null
     template?: StringFilter<"ChatBot"> | string
     dataFile?: StringNullableFilter<"ChatBot"> | string | null
     createdAt?: DateTimeFilter<"ChatBot"> | Date | string
@@ -12370,6 +12387,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     websiteUrl?: SortOrder
+    purpose?: SortOrderInput | SortOrder
     template?: SortOrder
     dataFile?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -12387,6 +12405,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"ChatBot"> | string
     name?: StringWithAggregatesFilter<"ChatBot"> | string
     websiteUrl?: StringWithAggregatesFilter<"ChatBot"> | string
+    purpose?: StringNullableWithAggregatesFilter<"ChatBot"> | string | null
     template?: StringWithAggregatesFilter<"ChatBot"> | string
     dataFile?: StringNullableWithAggregatesFilter<"ChatBot"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ChatBot"> | Date | string
@@ -13027,6 +13046,7 @@ export namespace Prisma {
     id?: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -13040,6 +13060,7 @@ export namespace Prisma {
     userId: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -13051,6 +13072,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13064,6 +13086,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13076,6 +13099,7 @@ export namespace Prisma {
     userId: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -13086,6 +13110,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13097,6 +13122,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13730,6 +13756,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     websiteUrl?: SortOrder
+    purpose?: SortOrder
     template?: SortOrder
     dataFile?: SortOrder
     createdAt?: SortOrder
@@ -13741,6 +13768,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     websiteUrl?: SortOrder
+    purpose?: SortOrder
     template?: SortOrder
     dataFile?: SortOrder
     createdAt?: SortOrder
@@ -13752,6 +13780,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     websiteUrl?: SortOrder
+    purpose?: SortOrder
     template?: SortOrder
     dataFile?: SortOrder
     createdAt?: SortOrder
@@ -14582,6 +14611,7 @@ export namespace Prisma {
     id?: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -14593,6 +14623,7 @@ export namespace Prisma {
     id?: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -14755,6 +14786,7 @@ export namespace Prisma {
     userId?: StringFilter<"ChatBot"> | string
     name?: StringFilter<"ChatBot"> | string
     websiteUrl?: StringFilter<"ChatBot"> | string
+    purpose?: StringNullableFilter<"ChatBot"> | string | null
     template?: StringFilter<"ChatBot"> | string
     dataFile?: StringNullableFilter<"ChatBot"> | string | null
     createdAt?: DateTimeFilter<"ChatBot"> | Date | string
@@ -15074,6 +15106,7 @@ export namespace Prisma {
     id?: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -15086,6 +15119,7 @@ export namespace Prisma {
     userId: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -15136,6 +15170,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15148,6 +15183,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15326,6 +15362,7 @@ export namespace Prisma {
     id?: string
     name: string
     websiteUrl: string
+    purpose?: string | null
     template: string
     dataFile?: string | null
     createdAt?: Date | string
@@ -15434,6 +15471,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15445,6 +15483,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15456,6 +15495,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     websiteUrl?: StringFieldUpdateOperationsInput | string
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
     template?: StringFieldUpdateOperationsInput | string
     dataFile?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

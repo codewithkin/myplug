@@ -13,7 +13,7 @@ function Home() {
         <article>
             <Header />
             <ChatComponent 
-                chatBotId="08c27729-7c85-4781-ac2a-5f8e6030b724" 
+                chatBotId="b157e965-8d03-4e19-ab4f-e0710c6e16d2" 
                 chatBotName="MyPlug" 
                 website="https://myplug.ai" 
                 apiKey={process.env.NEXT_PUBLIC_MYPLUG_API_KEY} />

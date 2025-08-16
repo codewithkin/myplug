@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
         await prisma.chatBot.create({
             data: {
                 name,
+                purpose,
                 websiteUrl,
                 user: {
                     connect: {

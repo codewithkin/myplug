@@ -91,6 +91,8 @@ model ChatBot {
   name       String
   websiteUrl String
 
+  purpose String?
+
   chats Chat[]
 
   template String

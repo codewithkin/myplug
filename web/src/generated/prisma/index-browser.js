@@ -178,6 +178,7 @@ exports.Prisma.ChatBotScalarFieldEnum = {
   userId: 'userId',
   name: 'name',
   websiteUrl: 'websiteUrl',
+  purpose: 'purpose',
   template: 'template',
   dataFile: 'dataFile',
   createdAt: 'createdAt',
