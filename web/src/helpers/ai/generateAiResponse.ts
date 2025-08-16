@@ -11,8 +11,18 @@ export default async function generateAiResponse(message: string) {
                 }
             ]
         })
-        
-        return response.choices[0].message.content;
+
+        // For DeepSeek models, the response will have a thought process inside <think></think> tags, so for now let's remove the thought process and only return what is after them (that is, the actual response)
+        const responseText = response.choices[0].message.content as string;
+
+        // Remove the <think></think> tags and everything before it
+        const startIndex = responseText.indexOf("</think>");
+
+        if(startIndex !== -1) {
+            return responseText.substring(startIndex + 7);
+        }
+
+        return responseText;
     } catch (e) {
         console.log("An error occured while generating AI response: ", e);
     }
