@@ -9,7 +9,11 @@ export async function GET(req: NextRequest) {
         const chatId = req.nextUrl.searchParams.get("chatId");
 
         if(!chatId) {
-            return NextResponse.json({ error: "Chat ID is required" }, { status: 400 });
+            return NextResponse.json({ error: "Chat ID is required" }, { status: 400, headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            }, });
         }
 
         // Get the messages for the chat
@@ -19,9 +23,19 @@ export async function GET(req: NextRequest) {
             }
         });
 
-        return NextResponse.json({ messages });
+        return NextResponse.json({ messages }, {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+        });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch messages" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to fetch messages" }, { status: 500, headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        }, });
     }
 }
 
@@ -32,7 +46,11 @@ export async function POST(req: NextRequest) {
         const chatId = req.nextUrl.searchParams.get("chatId");
 
         if(!chatId) {
-            return NextResponse.json({ error: "Chat ID is required" }, { status: 400 });
+            return NextResponse.json({ error: "Chat ID is required" }, { status: 400, headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            }, });
         }
 
         // Get the message from the request body
@@ -59,8 +77,18 @@ export async function POST(req: NextRequest) {
 
         console.log("AI Response: ", aiResponse);
 
-        return NextResponse.json(aiResponse);
+        return NextResponse.json(aiResponse, {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+        });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to create message" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to create message" }, { status: 500, headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        }, });
     }
 }

@@ -92,9 +92,9 @@ ${exampleSystemPrompts.map((ex, i) => `Example ${i + 1}: ${ex}`).join("\n\n")}
 `;
 
     const userInput = `
-Website: ${website}
-${name ? `Name: ${name}` : ""}
-Purpose: ${purpose}
+      Website: ${website}
+      ${name ? `Name: ${name}` : ""}
+      Purpose: ${purpose}
     `.trim();
 
     const res = await openaiClient.chat.completions.create({

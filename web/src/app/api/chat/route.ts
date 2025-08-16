@@ -9,7 +9,11 @@ export async function GET(req: NextRequest) {
         const chatId = req.nextUrl.searchParams.get("chatId");
 
         if(!chatId) {
-            return NextResponse.json({ error: "Chat ID is required" }, { status: 400 });
+            return NextResponse.json({ error: "Chat ID is required" }, { status: 400, headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            }, });
         }
 
         // Get the chat
@@ -26,11 +30,33 @@ export async function GET(req: NextRequest) {
             }
         });
 
-        return NextResponse.json({ chat, messages });
+        return NextResponse.json({ chat, messages }, {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+        });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch chat" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to fetch chat" }, { status: 500, headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        }, });
     }
 }
+
+// Handle CORS preflight requests (OPTIONS method)
+export async function OPTIONS() {
+    return NextResponse.json({}, {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // allow from anywhere
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    });
+  }
 
 // Create a new chat
 export async function POST(req: NextRequest) {
@@ -85,8 +111,18 @@ export async function POST(req: NextRequest) {
         });
 
         // Return the chat data
-        return NextResponse.json(newChat);
+        return NextResponse.json(newChat, {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+        });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to create chat" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to create chat" }, { status: 500, headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        }, });
     }
 }

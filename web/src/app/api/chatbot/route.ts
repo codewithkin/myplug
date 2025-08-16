@@ -34,14 +34,22 @@ export async function POST(req: NextRequest) {
             console.log("User has not selected a plan");
             return NextResponse.json({
                 message: "You have not selected a plan"
-            }, { status: 400 })
+            }, { status: 400, headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            }, })
         }
 
         if((user?.chatBots?.length || 0) >= plan.chatBots) {
             console.log("User has reached their chatbot limit");
             return NextResponse.json({
                 message: "You have reached your chatbot limit"
-            }, { status: 400 })
+            }, { status: 400, headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            }, })
         }
 
         // Create a chatbot
@@ -61,7 +69,11 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
             message: "Chatbot created successfully"
-        }, { status: 200 })
+        }, { status: 200, headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        }, })
     } catch (e) {
         console.log("An error occured while creating chatbot: ", e);
 
@@ -69,7 +81,11 @@ export async function POST(req: NextRequest) {
             message: "An error occured while creating chatbot",
             error: e
         }, {
-            status: 500
+            status: 500, headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
         })
     }
 }
