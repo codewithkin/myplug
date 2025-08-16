@@ -1,3 +1,4 @@
+import generatePurposePromptAssistant from "@/helpers/ai/assistant/generateAssistantPurposePrompt";
 import { prisma } from "@/helpers/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -59,13 +60,27 @@ export async function POST(req: NextRequest) {
             }
         });
 
-        
+        // Get the chatBot data
+        const chatBotData = await prisma.chatBot.findUnique({
+            where: {
+                id: chatBotId
+            }
+        });
+
+        if(!chatBotData) {
+            return NextResponse.json({ error: "ChatBot not found" }, { status: 404 });
+        }
+
         // Create a system message
         await prisma.message.create({
             data: {
                 chatId: newChat.id,
                 role: "system",
-                content: "You are a helpful assistant"
+                content: await generatePurposePromptAssistant({
+                    website: chatBotData.websiteUrl,
+                    purpose: chatBotData.purpose,
+                    name: chatBotData.name
+                })
             }
         });
 
