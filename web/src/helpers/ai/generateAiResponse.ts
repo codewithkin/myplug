@@ -19,7 +19,7 @@ export default async function generateAiResponse(message: string) {
         const startIndex = responseText.indexOf("</think>");
 
         if(startIndex !== -1) {
-            return responseText.substring(startIndex + 7);
+            return responseText.substring(startIndex + 8);
         }
 
         return responseText;
