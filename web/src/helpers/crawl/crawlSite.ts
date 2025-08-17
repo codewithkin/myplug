@@ -12,7 +12,7 @@ export default async function crawlSite(url: string) {
     }
 
     try {
-        const response = await axios.post('https://api.scraperapi.com/v1', payload);
+        const response = await axios.get('https://api.scraperapi.com/v1', payload);
 
         console.log("Response after crawling: ", response.data);
 

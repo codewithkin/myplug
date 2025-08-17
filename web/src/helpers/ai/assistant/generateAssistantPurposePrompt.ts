@@ -67,6 +67,9 @@ export default async function generatePurposePromptAssistant({
   purpose: string;
 }) {
   try {
+    // Crawl the site
+    const crawledContent = await crawlSite(website);
+
     const systemPrompt = `
     You are an expert prompt engineer. 
     Your task is to rewrite a chatbot’s description into a clear, friendly, 
@@ -90,16 +93,15 @@ export default async function generatePurposePromptAssistant({
     - Use examples from similar chatbots: ${exampleSystemPrompts.join("\n\n")}
     
     Output the final system prompt as a single string.
-    `;
 
-    // Crawl the site
-    const crawledContent = await crawlSite(website);
+    Here's some data about the website:
+    ${crawledContent}
+    `;
 
     const userInput = `
       Website: ${website}
       ${name ? `Name: ${name}` : ""}
       Purpose: ${purpose}
-      Crawled Content: ${crawledContent}
     `.trim();
 
     const res = await openaiClient.chat.completions.create({
