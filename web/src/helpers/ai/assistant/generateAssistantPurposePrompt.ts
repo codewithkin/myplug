@@ -1,4 +1,5 @@
 import openaiClient from "..";
+import crawlSite from "@/helpers/crawl/crawlSite";
 
 /**
  * Generates a refined, broad-purpose prompt for a chatbot
@@ -67,34 +68,38 @@ export default async function generatePurposePromptAssistant({
 }) {
   try {
     const systemPrompt = `
-You are an expert prompt engineer. 
-Your task is to rewrite a chatbot’s description into a clear, friendly, 
-and broad-purpose system prompt.
+    You are an expert prompt engineer. 
+    Your task is to rewrite a chatbot’s description into a clear, friendly, 
+    and broad-purpose system prompt.
+    
+    Context:
+    - These chatbots are embedded on websites to assist visitors.
+    - Their main roles include customer support, answering questions, 
+      explaining the website’s purpose, and guiding users.
+    - Users often provide very short or vague purposes (like “support” or “help”), 
+      so you must expand them into detailed and professional instructions.
+    - If no clear purpose is given, fallback to a generic helpful assistant role.
+    - The chatbot should always sound professional, approachable, and polite.
+    
+    Instructions:
+    - Introduce the chatbot (mention its name if provided, otherwise use "the assistant")
+    - Explain its purpose and relationship to the website (${website})
+    - Expand the short purpose ("${purpose}") into detailed guidance:
+      include tone, style, responsibilities, and helpful behaviors
+    - Keep the final prompt concise but thorough, in natural language
+    - Use examples from similar chatbots: ${exampleSystemPrompts.join("\n\n")}
+    
+    Output the final system prompt as a single string.
+    `;
 
-Context:
-- These chatbots are embedded on websites to assist visitors.
-- Their main roles include customer support, answering questions, 
-  explaining the website’s purpose, and guiding users.
-- Users often provide very short or vague purposes (like “support” or “help”), 
-  so you must expand them into detailed and professional instructions.
-- If no clear purpose is given, fallback to a generic helpful assistant role.
-- The chatbot should always sound professional, approachable, and polite.
-
-The final system prompt should:
-- Introduce the chatbot (mention its name if provided)
-- Explain its purpose and relationship to the website
-- Be phrased as if the chatbot is introducing itself directly to visitors
-- Be suitable for a wide range of users (new visitors, customers, or curious users)
-- Avoid bullet points, formatting, or meta-commentary
-
-Here are some example prompts for guidance:
-${exampleSystemPrompts.map((ex, i) => `Example ${i + 1}: ${ex}`).join("\n\n")}
-`;
+    // Crawl the site
+    const crawledContent = await crawlSite(website);
 
     const userInput = `
       Website: ${website}
       ${name ? `Name: ${name}` : ""}
       Purpose: ${purpose}
+      Crawled Content: ${crawledContent}
     `.trim();
 
     const res = await openaiClient.chat.completions.create({
