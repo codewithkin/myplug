@@ -242,7 +242,16 @@ export default function QuickStartSteps() {
           <AccordionContent>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
               <pre className="bg-muted p-4 rounded whitespace-pre-wrap">
-{`<MyPlugAI apiKey={API_KEY} />`}
+                  {`
+                  import { ChatComponent } from "myplug-ai";
+
+                    <ChatComponent 
+                      chatBotId="59dac53c-d898-4a78-bf66-7e50721d6d3a" 
+                      chatBotName="Kinly" 
+                      website="https://codewithkin.space" 
+                      apiKey={process.env.NEXT_PUBLIC_MYPLUG_API_KEY} 
+                    />
+                  `}
               </pre>
               <Button onClick={() => setCurrentStep(6)}>Mark as done</Button>
             </motion.div>
